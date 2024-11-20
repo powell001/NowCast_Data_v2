@@ -1,0 +1,5 @@
+*.csv
+*.xml
+*.png
+*.idea/
+*.pyc
