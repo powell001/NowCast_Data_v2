@@ -32,19 +32,21 @@ def creatXdata():
     return Xdata
 
 Xdata = creatXdata()
+
+
 print(Xdata)
 #################################
 # Combine with Quarterly data
 #################################
 
-Qtdata = pd.read_csv('../output/a0_combinedQuarterly_extended_transformed.csv', index_col=[0])
+# Qtdata = pd.read_csv('../output/a0_combinedQuarterly_extended_transformed.csv', index_col=[0])
 
-Qtdata.index = pd.date_range(start='01/01/1995', end='04/01/2024', freq="Q").to_period('Q')
-Qtdata.index = pd.PeriodIndex(Qtdata.index, freq='Q').to_timestamp()
-
-
-Qtdata = Qtdata.loc["04/01/1996":, :]
+# Qtdata.index = pd.date_range(start='01/01/1995', end='04/01/2024', freq="Q").to_period('Q')
+# Qtdata.index = pd.PeriodIndex(Qtdata.index, freq='Q').to_timestamp()
 
 
-data2 = pd.merge(Qtdata, Xdata, left_index = True, right_index = True, how = 'outer')
-data2.to_csv("../output/mergedDataforAnalysis.csv")
+# Qtdata = Qtdata.loc["04/01/1996":, :]
+
+
+# data2 = pd.merge(Qtdata, Xdata, left_index = True, right_index = True, how = 'outer')
+# data2.to_csv("../output/mergedDataforAnalysis.csv")

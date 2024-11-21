@@ -5,7 +5,7 @@ import functools as ft
 def mo_data():
 
     input_path = "output_mo_qt/"
-    output_path = "output_mo/combined_mo_data/"
+    output_path = "output_combined/"
 
     filesall = os.listdir(input_path)
 
@@ -37,7 +37,7 @@ mo_data()
 def qt_data():
 
     input_path = "output_mo_qt/"
-    output_path = "output_qt/combined_qt_data/"
+    output_path = "output_combined/"
 
     filesall = os.listdir(input_path)
 
