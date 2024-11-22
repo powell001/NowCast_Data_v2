@@ -128,7 +128,7 @@ write.table(percent_movers, file = paste0(analyse_dir, "combined_percentMovers_n
 ### Horizons
 horizon <- 4  # should be 1 in general, from forecast file
 
-rawDataFile <- "output_mo/combined_mo_data/a0_combinedMonthly.csv"
+rawDataFile <- "output_combined/a0_combinedMonthly.csv"
 combinedFinalForecasts <- "output_mo/analyses/combined_final_forecasts.csv"
 output <- "output_mo/analyses/"
 
@@ -144,7 +144,7 @@ fun_combine_hist_forecast <- function(){
     f1 <- finalForecasts[c('Point.Forecast','featureNames','X')]
 
     f2 <- f1 |> 
-    pivot_wider(names_from = featureNames, 
+                pivot_wider(names_from = featureNames, 
                 values_from = Point.Forecast)
 
     # data (historical)
