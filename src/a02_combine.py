@@ -4,8 +4,8 @@ import functools as ft
 
 def mo_data():
 
-    input_path = "output_mo_qt/"
-    output_path = "output_combined/"
+    input_path = "./output_mo_qt/"
+    output_path = "./output_combined/"
 
     filesall = os.listdir(input_path)
 

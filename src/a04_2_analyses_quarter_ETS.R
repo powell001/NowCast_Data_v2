@@ -128,7 +128,7 @@ write.table(percent_movers, file = paste0(analyse_dir, "combined_percentMovers_n
 ### Horizons
 horizon <- 4  # should be 1 in general, from forecast file
 
-rawDataFile <- "output_qt/combined_qt_data/a0_combinedQuarterly.csv"
+rawDataFile <- "output_combined/a0_combinedQuarterly.csv"
 combinedFinalForecasts <- "output_qt/analyses/combined_final_forecasts.csv"
 output <- "output_qt/analyses/"
 

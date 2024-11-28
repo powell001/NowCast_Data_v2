@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 def monthlydata():
 
-    monthData = "output_mo/combined_mo_data/"
+    monthData = "output_combined/"
 
     data = pd.read_csv(monthData + "a0_combinedMonthly.csv", index_col=[0])
 
@@ -59,7 +59,7 @@ def monthlydata():
     a0_combinedMonthly_extended.to_csv(monthData + "a0_combinedMonthly_extended_ARIMA.csv")
     print(a0_combinedMonthly_extended)
 
-monthlydata()
+#monthlydata()
 
 ##################################
 # Quarterly data (do by hand because only one column needs to be adjusted
@@ -68,7 +68,7 @@ monthlydata()
 ##################################
 def qtdata(donothing=True):
 
-    qtData = "output_qt/combined_qt_data/"
+    qtData = "output_combined/"
     data = pd.read_csv(qtData + "a0_combinedQuarterly.csv", index_col=[0])
 
     a0_combinedMonthly_new = []
