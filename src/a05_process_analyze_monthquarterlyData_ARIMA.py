@@ -59,7 +59,7 @@ def monthlydata():
     a0_combinedMonthly_extended.to_csv(monthData + "a0_combinedMonthly_extended_ARIMA.csv")
     print(a0_combinedMonthly_extended)
 
-#monthlydata()
+monthlydata()
 
 ##################################
 # Quarterly data (do by hand because only one column needs to be adjusted
