@@ -1,5 +1,12 @@
 import pandas as pd
+#import numpy as np
+
+#####################
+import pkg_resources
+pkg_resources.require("numpy==1.26.4")
 import numpy as np
+#####################
+
 from pmdarima import auto_arima
 import matplotlib.pyplot as plt
 
@@ -56,7 +63,7 @@ def monthlydata():
     a0_combinedMonthly_extended = pd.concat(a0_combinedMonthly_new, axis=1)
 
     a0_combinedMonthly_extended.columns = data.columns
-    a0_combinedMonthly_extended.to_csv(monthData + "a0_combinedMonthly_extended_ARIMA.csv")
+    a0_combinedMonthly_extended.to_csv("output_mo/combined_mo_data/a0_combinedMonthly_extended_ARIMA.csv")
     print(a0_combinedMonthly_extended)
 
 monthlydata()
@@ -111,7 +118,7 @@ def qtdata(donothing=True):
     a0_combinedQuarterly_extended = pd.concat(a0_combinedMonthly_new, axis=1)
 
     a0_combinedQuarterly_extended.columns = data.columns
-    a0_combinedQuarterly_extended.to_csv(qtData + "a0_combinedQuarterly_extended_ARIMA.csv")
+    a0_combinedQuarterly_extended.to_csv("output_qt/combined_qt_data/a0_combinedQuarterly_extended_ARIMA.csv")
     print(a0_combinedQuarterly_extended)
     
 

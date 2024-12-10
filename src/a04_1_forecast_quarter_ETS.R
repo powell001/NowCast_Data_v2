@@ -60,7 +60,7 @@ for(colName in allColumns){
 #dont want to forecast date
 if (colName == "X") {next}
 
-#colName <- "ASML.AS"
+#colName <- "gdp_total"
 
 print(colName)
 
