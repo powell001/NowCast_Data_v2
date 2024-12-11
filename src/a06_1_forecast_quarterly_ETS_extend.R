@@ -8,6 +8,7 @@ library(dlm)
 library(forecast)
 library(expsmooth)
 library(ggplot2)
+#library(ggfortify)
 library(changepoint)
 library(KFAS)
 library(httpgd)
@@ -40,7 +41,7 @@ output_dir <- "output_combined/"
 horizon <- 6
 
 # load data
-dt1 <- read.csv("output_combined/a0_combinedMonthly.csv", sep = ",")
+dt1 <- read.csv("output_combined/a0_combinedQuarterly.csv", sep = ",")
 
 allColumns <- colnames(dt1)
 
@@ -54,17 +55,17 @@ for(colName in allColumns){
   #dont want to forecast date
   if (colName == "X") {next}
 
-  #colName <- "ASML.AS"
+  #colName <- "gdp_total"
 
   print(colName)
 
   # Key1 connects all the data
   Key1 <- paste(Sys.Date(), "_", colName, sep="")
 
-  series1 <- ts(dt1[colName], frequency = 12, start=c(1995,1))
+  series1 <- ts(dt1[colName], frequency = 4, start=c(1995,1))
 
   # if missing many values, flag it
-  if (sum(is.na(series1)) > 50) {   ###### This is effectively not a constraint when set so high
+  if (sum(is.na(series1)) > 20) {   ###### This is effectively not a constraint when set so high
     print(paste0("Removing:", colName))
     }
 
@@ -125,6 +126,7 @@ for(colName in allColumns){
         print("Use Additive")
         errortype <- "A"
     }
+
     print(errortype)
 
     ###########################
@@ -155,7 +157,7 @@ for(colName in allColumns){
   ####################
 
   fit <- ets(series1, model=modelform, damped=FALSE)
-  forecast_months <- forecast(fit, h = 12)
+  forecast_months <- forecast(fit, h = horizon)
   forecast1 <- forecast_months$mean
 
   merged_ts <- ts(c(series1, forecast1), start = start(series1), frequency = frequency(series1)) 
@@ -165,7 +167,6 @@ for(colName in allColumns){
   colnames(df_data) <- c(colName, "date")
 
   dfList[[colName]] <- df_data
-
 } 
 
 ############# END LOOP ##############
@@ -174,12 +175,9 @@ for(colName in allColumns){
 
 #put all data frames into list
 #merge all data frames in list
-
 df_final <- dfList %>% reduce(full_join, by='date') 
 
 rownames(df_final) <- df_final$date
 df_final$date <- NULL
 
-write.csv(df_final, file = paste0(output_dir, "a0_combinedMonthly_extended_ETS.csv"),fileEncoding="UTF-8")
-
-
+write.csv(df_final, file = paste0(output_dir, "a0_combinedQuarterly_extended_ETS.csv"),fileEncoding="UTF-8")
