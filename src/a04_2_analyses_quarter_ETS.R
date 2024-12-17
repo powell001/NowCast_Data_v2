@@ -118,15 +118,13 @@ percent_movers <- percent_df[percent_df$ObservationDate %like% format(Sys.Date()
 
 write.table(percent_movers, file = paste0(analyse_dir, "combined_percentMovers_newMonth.csv"), sep =",",row.names = FALSE)
 
-
-
 ##### NOT IMPLEMENTED YET
 ######################
 # Historical data plus level forecasts
 ######################
 
 ### Horizons
-horizon <- 4  # should be 1 in general, from forecast file
+horizon <- 1  # should be 1 in general, from forecast file
 
 rawDataFile <- "output_combined/a0_combinedQuarterly.csv"
 combinedFinalForecasts <- "output_qt/analyses/combined_final_forecasts.csv"
@@ -137,6 +135,9 @@ fun_combine_hist_forecast <- function(){
     data <- read.csv(rawDataFile)
     data$X <- as.Date(data$X)
     rownames(data) <- data$X
+    
+    # dimensions
+    print(dim(data))
 
     finalForecasts <- read.csv(combinedFinalForecasts)
     finalForecasts$featureNames <- str_sub(finalForecasts$Key1, 12)
@@ -148,6 +149,7 @@ fun_combine_hist_forecast <- function(){
     pivot_wider(names_from = featureNames, 
                 values_from = Point.Forecast)
 
+    
     # data (historical)
     f2 <- as.data.frame(f2)
     f2 <- f2[names(data)]

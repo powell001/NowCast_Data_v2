@@ -26,6 +26,9 @@ def mo_data():
 
     df_final_mo.interpolate(method='linear', limit_direction='forward', axis=0)
 
+    # remove empty columns or columns with little data
+    df_final_mo.dropna(thresh=len(df_final_mo) - 100, axis=1, inplace=True)
+
     df_final_mo.to_csv(output_path + "a0_combinedMonthly.csv")
 
 mo_data()
@@ -56,6 +59,12 @@ def qt_data():
 
     df_final_qt = df_final_qt.interpolate(limit_direction='both', limit_area='inside') ##############
 
+    # remove empty columns or columns with little data
+    df_final_qt.dropna(thresh=len(df_final_qt) - 100, axis=1, inplace=True)
+
     df_final_qt.to_csv(output_path + "a0_combinedQuarterly.csv")
 
 qt_data()
+
+
+

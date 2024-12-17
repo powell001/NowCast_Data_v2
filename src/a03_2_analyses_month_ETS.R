@@ -47,7 +47,7 @@ for (fl in files[2:length(files)]) {
 }
 
 # View the merged data frame
-print(initial_df)
+head(initial_df)
 
 write.table(initial_df, file = paste0(analyse_dir, "combined_final_forecasts.csv"), sep =",",row.names = FALSE)
 
@@ -118,15 +118,13 @@ percent_movers <- percent_df[percent_df$ObservationDate %like% format(Sys.Date()
 
 write.table(percent_movers, file = paste0(analyse_dir, "combined_percentMovers_newMonth.csv"), sep =",",row.names = FALSE)
 
-
-
 ##### NOT IMPLEMENTED YET
 ######################
 # Historical data plus level forecasts
 ######################
 
 ### Horizons
-horizon <- 4  # should be 1 in general, from forecast file
+horizon <- 1  # should be 1 in general, from forecast file
 
 rawDataFile <- "output_combined/a0_combinedMonthly.csv"
 combinedFinalForecasts <- "output_mo/analyses/combined_final_forecasts.csv"
