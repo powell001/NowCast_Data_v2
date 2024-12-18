@@ -25,9 +25,13 @@ def mo_data():
     df_final_mo = df_final_mo.interpolate(limit_direction='both', limit_area='inside') ##############
 
     df_final_mo.interpolate(method='linear', limit_direction='forward', axis=0)
+    cols_before_removing = df_final_mo.columns
 
     # remove empty columns or columns with little data
-    df_final_mo.dropna(thresh=len(df_final_mo) - 100, axis=1, inplace=True)
+    df_final_mo.dropna(thresh=len(df_final_mo) - 400, axis=1, inplace=True)
+    col_after_removing = df_final_mo.columns
+
+    print("Columns removed: ", set(cols_before_removing) - set(col_after_removing))
 
     df_final_mo.to_csv(output_path + "a0_combinedMonthly.csv")
 
@@ -58,9 +62,13 @@ def qt_data():
     df_final_qt = df_final_qt.loc['1995-01-01':, :]  ##############
 
     df_final_qt = df_final_qt.interpolate(limit_direction='both', limit_area='inside') ##############
+    col_before_removing = df_final_qt.columns
 
     # remove empty columns or columns with little data
     df_final_qt.dropna(thresh=len(df_final_qt) - 100, axis=1, inplace=True)
+    col_after_removing = df_final_qt.columns
+
+    print("Columns removed: ", set(col_before_removing) - set(col_after_removing))
 
     df_final_qt.to_csv(output_path + "a0_combinedQuarterly.csv")
 
