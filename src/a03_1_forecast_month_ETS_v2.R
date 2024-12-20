@@ -37,7 +37,7 @@ analyse_dir  <- "output_mo/analyses/"
 
 
 ####################################
-horizon1 <- 12
+horizon1 <- 4
 finalforecastHorizon <- 1
 ####################################
 
@@ -65,7 +65,7 @@ allColumns <- colnames(dt1)
 data_columns <- allColumns[c(-1)]
 
 # remove files
-do.call(file.remove, list(list.files(forecast_dir, full.names = TRUE)))
+do.call(file.remove, list(list.files(forecasts_dir, full.names = TRUE)))
 do.call(file.remove, list(list.files(figures_dir, full.names = TRUE)))
 
 ##########################
@@ -236,15 +236,14 @@ for(colName in data_columns){
 # Create new dataframe based on 'data' dataframe and then rbind
 
 # pick any chunk of data dataframe with same size as horizon
-forecastDF <- tail(data, horizon)
+forecastDF <- tail(data, horizon1)
 forecastDF[c(5)] <- unclass(c(forecast_oneMonth$mean))
 forecastDF$ObservationDate <- as.yearmon(time(forecast_oneMonth$mean))
 
 data1 <- rbind(unclass(data), forecastDF)
 
 colnames(data1) <- c("SeriesName", "DateAnalysis", "ETSmodel", "ObservationDate", "RawData", "Key1")
-write.table(data1, file = paste(forecast_dir, Key1, "Historical_Forecasts.csv", sep="_"), sep =",",row.names = FALSE)
-
+write.table(data1, file = paste(forecasts_dir, Key1, "Historical_Forecasts.csv", sep="_"), sep =",",row.names = FALSE)
 
 } 
 

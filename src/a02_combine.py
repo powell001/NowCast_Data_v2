@@ -37,7 +37,7 @@ def mo_data():
 
     df_final_mo.to_csv(output_path + "a0_combinedMonthly.csv")
 
-#mo_data()
+mo_data()
 
 ###########################################
 ###########################################
@@ -68,7 +68,7 @@ def qt_data():
 
     # remove empty columns or columns with little data
     print("Number of columns before removing: ", len(df_final_qt.columns))
-    df_final_qt.dropna(thresh=len(df_final_qt) - 118, axis=1, inplace=True)
+    df_final_qt.dropna(thresh=len(df_final_qt) - 80, axis=1, inplace=True)
     col_after_removing = df_final_qt.columns
 
     print("Columns removed: ", set(col_before_removing) - set(col_after_removing))
